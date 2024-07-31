@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
+        run-name: run_name
         shell: bash -l {0}
         run: |
           python3 -c "import random; print('✂️')"
