@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       guess: $(("ABC" | cut -c$((RANDOM % 3 + 1))))
-      randval: $((RANDOM % 3))
+      randval: ${{ $((RANDOM % 3)) }}
 
     steps:
       # - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
@@ -17,7 +17,7 @@ jobs:
       #   run: |
       #     python3 -c "import random; print('✂️')"
 
-      - name: Generate Random Number -> ${{env.randval}}
+      - name: Generate Random Number -> ${{ env.randval }}
         id: random
         run: |
           echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
