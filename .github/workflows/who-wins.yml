@@ -22,22 +22,12 @@ jobs:
         id: random
         run: echo "value=$((RANDOM % 10))" >> $GITHUB_ENV
 
-      - name: Set Job Name
-        id: set-name
-        run: |
-          if [ $(( ${{ env.value }} % 2 )) -eq 0 ]; then
-            if [ ${{ env.value }} -eq 0 ]; then
-              echo "name=ZERO" >> $GITHUB_ENV
-            else
-              echo "name=EVEN" >> $GITHUB_ENV
-            fi
-          else
-            echo "name=ODD" >> $GITHUB_ENV
-          fi
-
-      - name: Display Job Name
-        run: |
-          echo "Job Name: ${{ env.name }}"
+      - name: Generate Random Number
+        id: random
+        run: echo "::set-output name=randnum::$(($RANDOM % 100))"
+        
+      - name: ${{ steps.random.outputs.randnum < 50 && 'Special Step' || 'Default Step' }}
+        run: echo "This step's name is set based on the random number."
 
     # name: ${{ env.name }}
 
