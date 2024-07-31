@@ -27,6 +27,7 @@ jobs:
       #   run: echo "::set-output name=randnum::$(($RANDOM % 100))"
 
       - name: ${{$GITHUB_ENV}}
+        run: echo $GITHUB_ENV
         
       - name: ${{ steps.random.outputs.randnum < 50 && 'Special Step' || 'Default Step' }}
         run: echo "This step's name is set based on the random number."
