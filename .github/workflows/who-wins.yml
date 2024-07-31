@@ -8,23 +8,19 @@ jobs:
   who_releases_pims:
     runs-on: ubuntu-latest
     env:
-      randval: $((RANDOM % 10))
-    strategy:
-      matrix:
-        python-version: ["3.9"]
-      fail-fast: false
+      guess: ${'ABC':$((RANDOM % 3)):1}
 
     steps:
-      - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
-        shell: bash -l {0}
-        run: |
-          python3 -c "import random; print('✂️')"
+      # - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
+      #   shell: bash -l {0}
+      #   run: |
+      #     python3 -c "import random; print('✂️')"
 
       - name: Generate Random Number
         id: random
         run: |
           echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
-          echo ${{env.randval}}
+          echo "The guess was ${{env.randval}}"
 
       # - name: Generate Random Number
       #   id: random
