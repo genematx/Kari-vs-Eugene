@@ -8,7 +8,8 @@ jobs:
   who_releases_pims:
     runs-on: ubuntu-latest
     env:
-      guess: $('ABC':$((RANDOM % 3)):1)
+      guess: $(('ABC':$((RANDOM % 3)):1))
+      randval: $((RANDOM % 3))
 
     steps:
       # - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
@@ -20,7 +21,7 @@ jobs:
         id: random
         run: |
           echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
-          echo "The guess was ${{env.randval}}"
+          echo "The guess was ${{env.guess}}"
 
       # - name: Generate Random Number
       #   id: random
