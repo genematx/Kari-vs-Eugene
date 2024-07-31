@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       guess: $(("ABC" | cut -c$((RANDOM % 3 + 1))))
-      randval: ${{$((RANDOM % 3))}}
+      randval: $((RANDOM % 3))
 
     steps:
       # - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
@@ -29,7 +29,10 @@ jobs:
       #   run: echo "::set-output name=randnum::$(($RANDOM % 100))"
 
       - name: Display random value ${{env.RND_VALUE}}
-        run: echo "The value of RND_VALUE is $RND_VALUE"
+        run:|
+          echo "The value of RND_VALUE is $RND_VALUE"
+          echo "The guess was ${{env.guess}}"
+          echo "The randval was ${{env.randval}}"
         
       - name: ${{ steps.random.outputs.randnum < 50 && 'Special Step' || 'Default Step' }}
         run: echo "This step's name is set based on the random number."
