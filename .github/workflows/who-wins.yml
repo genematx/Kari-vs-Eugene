@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: ${{ if(true) }} evaluateIfTrue ${{ else }} evaluateIfFalse ${{ endif }}  #  ${{ github.actor }}'s turn{:} ✂️
+      - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number + github.run_number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
         shell: bash -l {0}
         run: |
           python3 -c "import random; print('✂️')"
