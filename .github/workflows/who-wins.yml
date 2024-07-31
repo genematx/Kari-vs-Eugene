@@ -8,7 +8,7 @@ jobs:
   who_releases_pims:
     runs-on: ubuntu-latest
     env:
-      guess: ${'ABC':$((RANDOM % 3)):1}
+      guess: $('ABC':$((RANDOM % 3)):1)
 
     steps:
       # - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
