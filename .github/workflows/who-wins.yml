@@ -20,14 +20,14 @@ jobs:
 
       - name: Generate Random Number
         id: random
-        run: echo "value=$((RANDOM % 10))" >> $GITHUB_ENV
+        run: echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
 
       # - name: Generate Random Number
       #   id: random
       #   run: echo "::set-output name=randnum::$(($RANDOM % 100))"
 
-      - name: ${{$GITHUB_ENV}}
-        run: echo $GITHUB_ENV
+      - name: ${{ $RND_VALUE }}
+        run: echo "The value of RND_VALUE is $RND_VALUE"
         
       - name: ${{ steps.random.outputs.randnum < 50 && 'Special Step' || 'Default Step' }}
         run: echo "This step's name is set based on the random number."
