@@ -7,7 +7,6 @@ on:
 jobs:
   who_releases_pims:
     name: Check whose commit wins
-    run-name: ✂️
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,4 +17,4 @@ jobs:
       - name: ${{ github.actor }}'s turn
         shell: bash -l {0}
         run: |
-          python3 -c "import random; print(random.randint(1, 10))"
+          python3 -c "import random; print('✂️')"
