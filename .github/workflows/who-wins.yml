@@ -17,11 +17,12 @@ jobs:
       #   run: |
       #     python3 -c "import random; print('✂️')"
 
-      - name: Generate Random Number -> ${{env.guess}}
+      - name: Generate Random Number -> ${{env.randval}}
         id: random
         run: |
           echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
           echo "The guess was ${{env.guess}}"
+          echo "The randval was ${{env.randval}}"
 
       # - name: Generate Random Number
       #   id: random
