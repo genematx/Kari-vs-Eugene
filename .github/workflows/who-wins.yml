@@ -35,8 +35,9 @@ jobs:
             echo "name=ODD" >> $GITHUB_ENV
           fi
 
-      # - name: Display Job Name
-      #   run: echo "Job Name: ${{ env.name }}"
+      - name: Display Job Name
+        run: |
+          echo "Job Name: ${{ env.name }}"
 
     name: ${{ env.name }}
 
