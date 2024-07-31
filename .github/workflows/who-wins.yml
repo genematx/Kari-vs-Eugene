@@ -6,7 +6,8 @@ on:
 
 jobs:
   who_releases_pims:
-    name: Check whose commit wins (a lower number does more work)
+    name: Check whose commit wins
+    run-name: ✂️
     runs-on: ubuntu-latest
     strategy:
       matrix:
