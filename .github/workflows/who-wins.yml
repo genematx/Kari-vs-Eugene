@@ -18,9 +18,9 @@ jobs:
         run: |
           python3 -c "import random; print('✂️')"
 
-      - name: Generate Random Number
-        id: random
-        run: echo "value=$((RANDOM % 10))" >> $GITHUB_ENV
+      # - name: Generate Random Number
+      #   id: random
+      #   run: echo "value=$((RANDOM % 10))" >> $GITHUB_ENV
 
       - name: Generate Random Number
         id: random
