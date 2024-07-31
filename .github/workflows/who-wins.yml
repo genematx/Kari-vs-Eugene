@@ -6,7 +6,6 @@ on:
 
 jobs:
   who_releases_pims:
-    name: Check whose commit wins
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,7 +14,31 @@ jobs:
 
     steps:
       - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
-        run-name: run_name
         shell: bash -l {0}
         run: |
           python3 -c "import random; print('✂️')"
+
+      - name: Generate Random Number
+        id: random
+        run: echo "value=$((RANDOM % 10))" >> $GITHUB_ENV
+
+      - name: Set Job Name
+        id: set-name
+        run: |
+          if [ $(( ${{ env.value }} % 2 )) -eq 0 ]; then
+            if [ ${{ env.value }} -eq 0 ]; then
+              echo "name=ZERO" >> $GITHUB_ENV
+            else
+              echo "name=EVEN" >> $GITHUB_ENV
+            fi
+          else
+            echo "name=ODD" >> $GITHUB_ENV
+          fi
+
+      - name: Display Job Name
+        run: echo "Job Name: ${{ env.name }}"
+
+    name: ${{ env.name }}
+
+    # name: Check whose commit wins
+    
