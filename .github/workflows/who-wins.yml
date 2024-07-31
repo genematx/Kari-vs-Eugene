@@ -39,6 +39,6 @@ jobs:
         run: |
           echo "Job Name: ${{ env.name }}"
 
-    name: ${{ env.name }}
+    # name: ${{ env.name }}
 
-    # name: Check whose commit wins
+    name: Check whose commit wins
