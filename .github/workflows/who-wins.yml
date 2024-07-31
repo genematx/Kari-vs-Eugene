@@ -22,7 +22,9 @@ jobs:
 
       - name: Generate Random Number
         id: random
-        run: echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
+        run: |
+          echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
+          echo ${{env.randval}}
 
       # - name: Generate Random Number
       #   id: random
