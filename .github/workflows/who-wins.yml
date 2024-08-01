@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "${{ github.actor }} is making a choice... I hope you win! :scissors:"
+      - name: ${{ github.actor }} is making a choice... I hope you win!
         run: |
           options='🪨📃✂️'
           echo "choice=${options:$(( RANDOM % ${#options} )):1}" >> $GITHUB_ENV
