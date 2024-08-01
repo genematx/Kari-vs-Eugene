@@ -8,11 +8,13 @@ jobs:
   who_releases_pims:
     name: Check whose commit wins
     runs-on: ubuntu-latest
+    env:
+      options: abc
 
     steps:
       - name: Making a choice
         run: |
-          echo "randval=$((RANDOM % 10))" >> $GITHUB_ENV
+          echo "randval=${env.options:$(( RANDOM % ${#env.options} )):1}" >> $GITHUB_ENV
 
       - name: Display random value ${{env.randval}}
         run: |
