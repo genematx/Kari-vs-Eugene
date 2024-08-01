@@ -14,7 +14,8 @@ jobs:
     steps:
       - name: Making a choice
         run: |
-          echo "randval=${$env.options:$(( RANDOM % ${#$env.options} )):1}" >> $GITHUB_ENV
+          options='ABC'
+          echo "randval=${options:$(( RANDOM % ${#options} )):1}" >> $GITHUB_ENV
 
       - name: Display random value ${{env.randval}}
         run: |
