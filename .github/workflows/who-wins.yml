@@ -12,8 +12,9 @@ jobs:
     steps:
       - name: ${{ github.actor }} is making a choice... I hope you win!
         run: |
-          options='🪨📃✂️'
+          options='🪨📃✄✂'
           echo "choice=${options:$(( RANDOM % ${#options} )):1}" >> $GITHUB_ENV
+          echo "options=options" >> $GITHUB_ENV
 
-      - name: ${{ github.actor }} has chosen ${{env.choice}}
+      - name: ${{ github.actor }} has chosen ${{env.choice}} from ${{env.options}}
         run: echo -n
