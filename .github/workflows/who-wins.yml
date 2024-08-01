@@ -6,39 +6,14 @@ on:
 
 jobs:
   who_releases_pims:
+    name: Check whose commit wins
     runs-on: ubuntu-latest
-    env:
-      guess: $(("ABC" | cut -c$((RANDOM % 3 + 1))))
-      randval: $((RANDOM % 3))
 
     steps:
-      # - name: ${{ github.event.number == 0 && 'master' ||  format('pr-{0}', github.event.number)  }}  #  ${{ github.actor }}'s turn{:} ✂️
-      #   shell: bash -l {0}
-      #   run: |
-      #     python3 -c "import random; print('✂️')"
-
-      - name: Generate Random Number -> ${{ env.randval }}
-        id: random
+      - name: Making a choice
         run: |
-          echo "rnd_value=$((RANDOM % 10))" >> $GITHUB_ENV
-          echo "The guess was ${{env.guess}}"
-          echo "The randval was ${{env.randval}}"
+          echo "randval=$((RANDOM % 10))" >> $GITHUB_ENV
 
-      - name: Work with GH variables
+      - name: Display random value ${{env.randval}}
         run: |
-            gh variable list
-            gh variable set TEST_VAR --body "Set from workflow"
-            gh variable list
-
-      - name: Display random value ${{env.rnd_value}}, ${{env.guess}}, ${{env.randval}}
-        run: |
-          echo "The value of rnd_value is $rnd_value"
-          echo "The guess was ${{env.guess}}"
-          echo "The randval was ${{env.randval}}"
-        
-      - name: ${{ steps.random.outputs.randnum < 50 && 'Special Step' || 'Default Step' }}
-        run: echo "This step's name is set based on the random number."
-
-    # name: ${{ env.name }}
-
-    name: Check whose commit wins
+          echo "The value of rnd_value is ${{env.randval}}"
