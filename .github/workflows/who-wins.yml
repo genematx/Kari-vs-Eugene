@@ -9,12 +9,13 @@ jobs:
     name: Check whose commit wins
     runs-on: ubuntu-latest
     env:
-      options: abc
+      options: 'abc'
 
     steps:
       - name: Making a choice
         run: |
           options='ABC'
+          echo ${{env.options}}
           echo "randval=${${{env.options}}:$(( RANDOM % ${#${{env.options}}} )):1}" >> $GITHUB_ENV
 
       - name: Display random value ${{env.randval}}
