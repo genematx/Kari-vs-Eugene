@@ -7,7 +7,6 @@ on:
 jobs:
   who_releases_pims:
     runs-on: ubuntu-latest
-    run-name: Some Run Name
     env:
       guess: $(("ABC" | cut -c$((RANDOM % 3 + 1))))
       randval: $((RANDOM % 3))
@@ -21,17 +20,21 @@ jobs:
       - name: Generate Random Number -> ${{ env.randval }}
         id: random
         run: |
-          echo "RND_VALUE=$((RANDOM % 10))" >> $GITHUB_ENV
+          echo "rnd_value=$((RANDOM % 10))" >> $GITHUB_ENV
           echo "The guess was ${{env.guess}}"
           echo "The randval was ${{env.randval}}"
 
-      # - name: Generate Random Number
-      #   id: random
-      #   run: echo "::set-output name=randnum::$(($RANDOM % 100))"
-
-      - name: Display random value ${{env.RND_VALUE}}, ${{env.guess}}, ${{env.randval}}
+      - name: Work with GH variables
         run: |
-          echo "The value of RND_VALUE is $RND_VALUE"
+            gh variable list
+            gh variable set TEST_VAR --body "Set from workflow"
+            gh variable list
+        env:
+          GITHUB_TOKEN: ${{ secrets.FULL_PAT }}
+
+      - name: Display random value ${{env.rnd_value}}, ${{env.guess}}, ${{env.randval}}
+        run: |
+          echo "The value of rnd_value is $rnd_value"
           echo "The guess was ${{env.guess}}"
           echo "The randval was ${{env.randval}}"
         
