@@ -9,7 +9,7 @@ jobs:
     name: Check whose commit wins
     runs-on: ubuntu-latest
     env:
-      options: 'abc'
+      options: 'ABC'
 
     steps:
       - name: Making a choice
