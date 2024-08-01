@@ -5,19 +5,15 @@ on:
   pull_request:
 
 jobs:
-  who_releases_pims:
+  rock_paper_scissors:
     name: Check whose commit wins
     runs-on: ubuntu-latest
-    env:
-      options: 'ABC'
 
     steps:
-      - name: Making a choice
+      - name: ${{ github.actor }} is making a choice... I hope you win!
         run: |
           options='ABC'
-          echo ${{env.options}}
-          echo "randval=${${{env.options}}:$(( RANDOM % ${#${{env.options}}} )):1}" >> $GITHUB_ENV
+          echo "choice=${options:$(( RANDOM % ${#options} )):1}" >> $GITHUB_ENV
 
-      - name: Display random value ${{env.randval}}
-        run: |
-          echo "The value of rnd_value is ${{env.randval}}"
+      - name: ${{ github.actor }} has chosen ${{env.choice}}
+        run: echo -n
